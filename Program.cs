@@ -14,6 +14,7 @@ var client = new HttpClient();
 var request = new HttpRequestMessage(HttpMethod.Post, loginUri);
 var collection = new List<KeyValuePair<string, string>>();
 
+
 /* Build the request to the AAD Login uri */
 
 collection.Add(new("grant_type", "client_credentials"));
