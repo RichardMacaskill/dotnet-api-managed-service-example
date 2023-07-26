@@ -12,15 +12,15 @@ NOTE: it is recommended to use a certificate for Production deployments */
 
 var client = new HttpClient();
 var request = new HttpRequestMessage(HttpMethod.Post, loginUri);
-var collection = new List<KeyValuePair<string, string>>();
+var collection = new List<KeyValuePair<string, string>>
+{
+    /* Build the request to the AAD Login uri */
 
-
-/* Build the request to the AAD Login uri */
-
-collection.Add(new("grant_type", "client_credentials"));
-collection.Add(new("client_id", clientId));
-collection.Add(new("client_secret", clientSecret));
-collection.Add(new("resource", resource));
+    new("grant_type", "client_credentials"),
+    new("client_id", clientId),
+    new("client_secret", clientSecret),
+    new("resource", resource)
+};
 var content = new FormUrlEncodedContent(collection);
 
 request.Content = content;
@@ -29,7 +29,7 @@ request.Content = content;
 
 var response = await client.SendAsync(request);
 response.EnsureSuccessStatusCode();
-String resultJson = await response.Content.ReadAsStringAsync();
+string resultJson = await response.Content.ReadAsStringAsync();
 var accessToken = JsonDocument.Parse(resultJson).RootElement.GetProperty("access_token").GetString();
 
 // for debugging // Console.WriteLine("token: {0}",accessToken);
