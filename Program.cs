@@ -8,7 +8,7 @@ var clientSecret = Environment.GetEnvironmentVariable("NEO4J_ServicePrincipal_Cl
 var resource = Environment.GetEnvironmentVariable("NEO4J_AAD_Application_Scope"); // the scope for the token request e.g. <your enterprise application id>/Token.Connect
 
 /* Using a stored password (Client Secret) for the ServicePrincipal, obtain a jwt token to pass to Neo4j 
-NOTE: it is recommended to use a certificate for Production deployments */
+NOTE: MS recommend to use a certificate for Production deployments */
 
 var client = new HttpClient();
 var request = new HttpRequestMessage(HttpMethod.Post, loginUri);
